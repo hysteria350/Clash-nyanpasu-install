@@ -39,7 +39,100 @@ Clash Nyanpasu 是基于 Tauri 的 Clash GUI 软件实现，利用 Tauri 的特�
 
 ### 如何安装Clash Nyanpasu？
 
-这里以Linux Redhat 系列安装包
+针对不同的操作系统，请参考不同的安装步骤。
+
+#### Debian 系列 Linux 系统下载并安装 Clash Nyanpasu
+
+对于 debian 系列发行版（Debian、Ubuntu、 Mint、 MX、 Kubuntu、Zorin 等等）
+
+使用命令行安装：
+
+```bash
+
+# 这里使用ghfast代理下载，避免github下载超时或被阻碍的情况
+wget -O /tmp/clash-nyanpasu_1.6.1_amd64.deb https://ghfast.top/https://github.com/libnyanpasu/clash-nyanpasu/releases/download/v1.6.1/clash-nyanpasu_1.6.1_amd64.deb
+
+# 安装Clash nyanpasu
+sudo apt install /tmp/clash-nyanpasu_1.6.1_amd64.deb
+
+```
+
+#### Redhat 系列 Linux 系统下载并安装 v2rayA
+
+对于 Redhat 系列发行版（RHEL、 Centos、 Fedora、 AlmaLinux、Rocky Linux 等等）
+
+```bash
+
+# 这里使用ghfast代理下载，避免github下载超时或被阻碍的情况
+wget -O /tmp/clash-nyanpasu-1.6.1-1.x86_64.rpm https://ghfast.top/https://github.com/libnyanpasu/clash-nyanpasu/releases/download/v1.6.1/clash-nyanpasu-1.6.1-1.x86_64.rpm
+
+
+# # 安装Clash nyanpasu
+sudo rpm -i /tmp/clash-nyanpasu-1.6.1-1.x86_64.rpm
+
+```
+
+## 导入订阅
+
+先进行 [订阅购买](https://shortlink.20250812.xyz/1) ，获取到订阅链接。订阅链接位于：仪表盘 > 一键订阅 , 然后复制订阅地址。
+
+然后点击界面左侧菜单 `配置`，在顶部输入框填入刚才复制的 URL 连接地址并点击 `下载图标` 即可，下载完成后点击对应的配置文件即可添加配置文件，如下图所示。
+
+![Clash Nyanpasu 远程订阅地址](https://clashnyanpasu.org/wp-content/uploads/2024/11/1731224657-ClashNyanpasu-Profiles-Download.jpg)
+
+点击“更新订阅”，系统将自动加载所有节点。
+
+## 选择代理节点
+
+在添加完订阅地址之后，需要选择一个代理节点使用，点击软件主界面左侧的 代理 选项卡，软件右上角代理规则处默认保持 规则 即可，代理模式主要有以下三种：
+
+* 规则：所有请求根据配置文件规则进行分流
+* 全局：所有请求直接发往代理服务器
+* 直连：所有请求直接发往目的地，即不使用代理
+
+全局模式可能会导致国内流量也走代理访问，除了网络会变慢外，还会消耗套餐流量。规则模式的好处就是区分国内国外的流量只有在规则内的国外网站才会走代理，这样即不影响国内访问速度，又节省套餐流量，所以如果没有什么特别的需求，一般选择 规则 即可。
+
+然后在展开的节点组之中任意单击鼠标左键选择一个节点即可，如下图所示。
+
+![Clash Nyanpasu 选择代理节点](https://clashnyanpasu.org/wp-content/uploads/2024/11/1731227658-ClashNyanpasu-Proxies-Choose.jpg)
+
+选择代理节点
+
+上图中界面右小角的图标为延迟测试，在出来的结果当中，数字越小则表明速度越快。
+
+## 启用代理
+
+启用系统代理，需要点击界面左侧菜单 概览 选项卡，找到 代理接管状态 并单击 系统代理 即可，开启状态下代理接管状态字样旁边会出现 Success 字样，如下图所示。
+
+![Clash Nyanpasu 启用代理](https://clashnyanpasu.org/wp-content/uploads/2024/11/1731230431-ClashNyanpasu-Dashboard-System-Proxy.jpg)
+
+启用代理
+
+启动代理后系统托盘的图标会变成红色猫咪，以下是系统托盘图标颜色说明。
+
+| **图标** | **说明** |
+| --- | --- |
+| ![Clash Nyanpasu 代理关闭状态](https://clashnyanpasu.org/wp-content/uploads/2024/11/1731231202-clashnyanpasu-icon-white.png) | 代理关闭状态 |
+| ![Clash Nyanpasu 代理开启状态](https://clashnyanpasu.org/wp-content/uploads/2024/11/1731231194-clashnyanpasu-icon-pink.png) | 代理开启状态 |
+| ![Clash Nyanpasu TUN模式开启状态](https://clashnyanpasu.org/wp-content/uploads/2024/11/1731231210-clashnyanpasu-icon-blue.png) | TUN模式开启状态 |
+
+系统托盘图标说明
+
+### 设置开机自动启动
+
+设置开机自启动，需要点击界面左侧菜单 `设置` 选项卡，找到 `开机自启` 并单击 `开机自启` 即可，开启状态底色为蓝色，如下图所示为开启状态。
+
+![Clash Nyanpasu 开机自动启动](https://clashnyanpasu.org/wp-content/uploads/2024/11/1731231810-ClashNyanpasu-Settings-Start-with-Windows.jpg)
+
+开机自动启动
+
+### 更新配置文件
+
+点击界面左侧菜单 `配置`，点击 `更新图标` 即可更新所有配置文件，如下图所示。
+
+![Clash Nyanpasu 更新配置文件](https://clashnyanpasu.org/wp-content/uploads/2024/11/1731232089-ClashNyanpasu-Profiles-Update.jpg)
+
+更新配置文件
 
 ## 参考文档
 
