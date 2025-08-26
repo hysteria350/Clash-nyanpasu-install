@@ -134,6 +134,35 @@ sudo rpm -i /tmp/clash-nyanpasu-1.6.1-1.x86_64.rpm
 
 更新配置文件
 
+## Troubleshooting
+
+issue 1: 在fedora上安装clash nyanpasu 时报错 “依赖检测失败：libwebkit2gtk-4.0 被 clash-nyanpasu-0:1.6.1-1.x86_64 需要”
+
+```bash
+$sudo rpm -i /tmp/clash-nyanpasu-1.6.1-1.x86_64.rpm
+错误：依赖检测失败：
+        libwebkit2gtk-4.0.so.37()(64bit) 被 clash-nyanpasu-0:1.6.1-1.x86_64 需要
+
+```
+
+原因分析：
+
+1. Fedora Workstation 自带 GNOME 桌面，浏览器一般用 WebKitGTK 内嵌较少，大部分桌面环境不会预装 webkit2gtk（体积大、依赖重），所以新装系统上默认缺少。同时 RPM 包写的依赖名和 Fedora 的包名不完全一致
+
+解决办法：
+
+```bash
+sudo dnf install webkit2gtk4.0
+```
+
+安装完成后，再执行：
+
+```bash
+
+sudo dnf install clash-nyanpasu-1.6.1-1.x86_64.rpm
+
+```
+
 ## 参考文档
 
 [clashnyanpasu 官网](https://clashnyanpasu.xyz/)
