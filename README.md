@@ -68,7 +68,7 @@ wget -O /tmp/clash-nyanpasu-1.6.1-1.x86_64.rpm https://ghfast.top/https://github
 
 
 # # 安装Clash nyanpasu
-sudo rpm -i /tmp/clash-nyanpasu-1.6.1-1.x86_64.rpm
+sudo dnf install /tmp/clash-nyanpasu-1.6.1-1.x86_64.rpm
 
 ```
 
