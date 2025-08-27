@@ -100,7 +100,7 @@ sudo dnf install /tmp/clash-nyanpasu-1.6.1-1.x86_64.rpm
 
 然后在展开的节点组之中任意单击鼠标左键选择一个节点即可，如下图所示。
 
-![Clash Nyanpasu 选择代理节点](https://clashnyanpasu.org/wp-content/uploads/2024/11/1731227658-ClashNyanpasu-Proxies-Choose.jpg)
+![Clash Nyanpasu 选择代理节点](https://hysteria350.github.io/images/clash-nyanpasu/select-proxy.png)
 
 选择代理节点
 
