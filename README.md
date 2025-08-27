@@ -82,6 +82,12 @@ sudo dnf install /tmp/clash-nyanpasu-1.6.1-1.x86_64.rpm
 
 点击“更新订阅”，系统将自动加载所有节点。
 
+## 选择配置
+
+成功导入节点配置文件后如下图所示，然后**点击配置**选中该配置。在只有一套配置的情况下，即使您不选中一套配置，在代理选项卡是不会出现任何代理， 这是clash nyanpasu设计不人性化或不智能的方面。
+
+![选择Clash配置](https://hysteria350.github.io/images/clash-nyanpasu/clash_nyanpasu_select_config.png)
+
 ## 选择代理节点
 
 在添加完订阅地址之后，需要选择一个代理节点使用，点击软件主界面左侧的 代理 选项卡，软件右上角代理规则处默认保持 规则 即可，代理模式主要有以下三种：
