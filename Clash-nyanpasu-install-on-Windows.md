@@ -49,7 +49,7 @@ Clash Nyanpasu 是基于 Tauri 的 Clash GUI 软件实现，利用 Tauri 的特�
 
 ![Microsoft Defender SmartScreen](https://clashnyanpasu.org/wp-content/uploads/2024/11/1730617372-Microsoft-Defender-SmartScreen-02.jpg)
 
-点击仍要运行
+点击仍要运行，然后安装安装向导进行安装。
 
 ## 导入订阅
 
