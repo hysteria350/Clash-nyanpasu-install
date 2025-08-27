@@ -142,7 +142,7 @@ sudo dnf install /tmp/clash-nyanpasu-1.6.1-1.x86_64.rpm
 
 ## Troubleshooting
 
-**issue 1**: 在fedora上安装clash nyanpasu 时报错 “依赖检测失败：libwebkit2gtk-4.0 被 clash-nyanpasu-0:1.6.1-1.x86_64 需要”
+### **issue 1**: 在fedora上安装clash nyanpasu 时报错 “依赖检测失败：libwebkit2gtk-4.0 被 clash-nyanpasu-0:1.6.1-1.x86_64 需要”
 
 ```bash
 $sudo rpm -i /tmp/clash-nyanpasu-1.6.1-1.x86_64.rpm
@@ -168,7 +168,7 @@ sudo dnf install webkit2gtk4.0
 sudo dnf install clash-nyanpasu-1.6.1-1.x86_64.rpm
 
 ```
-**issue 2**: 在Fedora 40 上运行clash-nyanpasu时报错 `clash-nyanpasu: symbol lookup error: /lib64/libwebkit2gtk-4.0.so.37: undefined symbol: gst_video_is_dma_drm_caps`
+### **issue 2**: 在Fedora 40 上运行clash-nyanpasu时报错 `clash-nyanpasu: symbol lookup error: /lib64/libwebkit2gtk-4.0.so.37: undefined symbol: gst_video_is_dma_drm_caps`
 现象：在Fedora 40上点击clash-nyanpasu运行，意外退出，使用命令行打开clash-nyanpasu，在控制台发现如上错误。
 
 原因分析：
@@ -212,6 +212,14 @@ clash-nyanpasu
 ```
 
 这样不影响系统自带的旧版本，但 Clash Nyanpasu 可以用新版本。
+
+### **issue 3**: Clash Nyanpasu 状态为 Occupied
+
+原因分析：
+
+正常情况下应该显示 Success，表示内核启动并且监听成功。
+
+当状态是 Occupied 时，通常代表：Clash 内核无法成功占用端口 / 服务被占用 / 权限不足。
   
 ## 参考文档
 
