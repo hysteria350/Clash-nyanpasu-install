@@ -136,7 +136,7 @@ sudo dnf install /tmp/clash-nyanpasu-1.6.1-1.x86_64.rpm
 
 ## Troubleshooting
 
-issue 1: 在fedora上安装clash nyanpasu 时报错 “依赖检测失败：libwebkit2gtk-4.0 被 clash-nyanpasu-0:1.6.1-1.x86_64 需要”
+**issue 1**: 在fedora上安装clash nyanpasu 时报错 “依赖检测失败：libwebkit2gtk-4.0 被 clash-nyanpasu-0:1.6.1-1.x86_64 需要”
 
 ```bash
 $sudo rpm -i /tmp/clash-nyanpasu-1.6.1-1.x86_64.rpm
@@ -162,7 +162,51 @@ sudo dnf install webkit2gtk4.0
 sudo dnf install clash-nyanpasu-1.6.1-1.x86_64.rpm
 
 ```
+**issue 2**: 在Fedora 40 上运行clash-nyanpasu时报错 `clash-nyanpasu: symbol lookup error: /lib64/libwebkit2gtk-4.0.so.37: undefined symbol: gst_video_is_dma_drm_caps`
+现象：在Fedora 40上点击clash-nyanpasu运行，意外退出，使用命令行打开clash-nyanpasu，在控制台发现如上错误。
 
+原因分析：
+
+- Clash Nyanpasu 的 WebKitGTK 前端依赖 GStreamer。gst_video_is_dma_drm_caps 这个函数在 GStreamer 1.24 新引入（见 upstream commit），而 Fedora 40 默认仓库可能只提供 GStreamer 1.22.x。
+ 也就是说，你的 webkit2gtk 是用 GStreamer 1.24 构建的，但系统里还是旧的 GStreamer 1.22 → ABI 不兼容。
+ 所以问题根源是 WebKitGTK 和 GStreamer 版本不匹配。 而fedora 40 系统里 gstreamer1-plugins-base 版本太旧，缺少 gst_video_is_dma_drm_caps 符号。
+
+> - GStreamer 是 Linux 上常用的 多媒体框架，提供音视频的解码、播放、流式处理功能。类似于 Windows 上的 DirectShow / Media Foundation。
+> - 它由多个模块组成：gstreamer → 核心框架（pipeline、插件机制），不含具体编解码器; gstreamer1-plugins-base → 常用基础插件（音视频格式、视频缩放、转换等）; gstreamer1-plugins-good / bad / ugly → 额外的插件集（按版权/质量分级）; gstreamer1-libav → FFmpeg 后端插件。
+> GNOME 桌面、Firefox、WebKitGTK、OBS、媒体播放器（如 Totem）都会用到 GStreamer，所以 Fedora 默认就会带上 核心 gstreamer 包。
+
+解决办法： 
+
+在不升级全系统的情况下，有四种解决办法：
+
+> 备注：我不想用 dnf upgrade --refresh 全量升级，Fedora 一旦全量升级，内核 / Mesa / 驱动都会跟着动，我已经尝试多次升级内核后出现驱动兼容性问题了。
+
+- 方案 1：手动更新单个 GStreamer 相关包
+  只更新 gstreamer1 和 gstreamer1-plugins-base，不动核心和驱动。
+  ```bash
+   sudo dnf update gstreamer1 gstreamer1-plugins-base 
+  ```
+  碰巧Fedora40的官方库中gstreamer已经升级到了1.24, 解决了问题。
+
+- 方案 2：启用 Fedora Updates-testing 仓库（仅 GStreamer）
+
+  Fedora 的更新分支 updates-testing 里一般会有更新版本的 GStreamer：
+
+  ```bash
+   sudo dnf --enablerepo=updates-testing install gstreamer1 gstreamer1-plugins-base
+  ```
+
+- 方案 3：自己编译/安装新版 GStreamer
+
+如果你愿意动手，可以单独下载 GStreamer 1.24 的源码，放到 /opt/gstreamer，然后用环境变量让 Clash Nyanpasu 运行时加载：
+
+```bash
+export LD_LIBRARY_PATH=/opt/gstreamer/lib64:$LD_LIBRARY_PATH
+clash-nyanpasu
+```
+
+这样不影响系统自带的旧版本，但 Clash Nyanpasu 可以用新版本。
+  
 ## 参考文档
 
 [clashnyanpasu 官网](https://clashnyanpasu.xyz/)
